@@ -45,6 +45,8 @@ group :development do
 end
 
 group :test do
+  # Bundled gem since 3.0.0
+  gem 'rexml'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
