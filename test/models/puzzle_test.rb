@@ -5,7 +5,8 @@ class PuzzleTest < ActiveSupport::TestCase
 
   test 'the grid should be 9x9 ' do
     puzzle = Puzzle.new
-    assert_equal 9 * 9, puzzle.grid.size
+    assert puzzle.invalid?, 'Valid with empty grid size'
+    puzzle.grid = ' ' * 9 * 9
     assert puzzle.valid?, 'Not valid with correct grid size'
     puzzle.grid = ' ' * 10
     assert puzzle.invalid?, 'Valid with wrong grid size'
@@ -13,7 +14,7 @@ class PuzzleTest < ActiveSupport::TestCase
 
   test 'the grid should only contain numbers or spaces' do
     puzzle = Puzzle.new
-    assert_equal ' ' * 81, puzzle.grid
+    puzzle.grid = ' ' * 9 * 9
     assert puzzle.valid?, 'Not valid with empty grid'
     puzzle.grid[3] = '3'
     assert puzzle.valid?, 'Not valid with number in grid'

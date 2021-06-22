@@ -1,0 +1,31 @@
+<%= form_with(model: puzzle) do |form| %>
+  <% if puzzle.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(puzzle.errors.count, "error") %> prohibited this puzzle from being saved:</h2>
+
+      <ul>
+        <% puzzle.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+        
+  <% options = [' '] + (1...10).to_a %>
+  <table>
+    <tbody>
+      <% Puzzle::GRID_SIDE_LENGTH.times do |r| %>
+        <tr>
+          <% Puzzle::GRID_SIDE_LENGTH.times do |c| %>
+            <% ix = c + r * Puzzle::GRID_SIDE_LENGTH %>
+            <td><%= form.select :cells, options, { selected: puzzle.grid[ix] }, size: 1, multiple: true %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
