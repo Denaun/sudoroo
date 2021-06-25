@@ -14,3 +14,13 @@
 
 <%= link_to 'Edit', edit_puzzle_path(@puzzle) %>
 <%= link_to 'Back', puzzles_path %>
+
+<h2>Games:</h2>
+
+<ul>
+  <% @puzzle.games.each do |game| %>
+    <li><%= link_to game.id, puzzle_game_path(@puzzle, game) %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'New', new_puzzle_game_path(@puzzle) %>

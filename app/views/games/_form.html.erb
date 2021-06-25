@@ -1,0 +1,38 @@
+<%= form_with(model: [@puzzle, game]) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% options = [' '] + (1...10).to_a %>
+  <table>
+    <tbody>
+      <% Game::GRID_SIDE_LENGTH.times do |r| %>
+        <tr>
+          <% Game::GRID_SIDE_LENGTH.times do |c| %>
+            <% ix = c + r * Game::GRID_SIDE_LENGTH %>
+            <td>
+              <% if @puzzle.grid[ix] == ' ' %>
+                <%= form.select :cells, options, { selected: game.grid[ix] }, size: 1, multiple: true %>
+              <% else %>
+                <%= game.grid[ix] %>
+                <%= form.select :cells, options, { selected: game.grid[ix] }, size: 1, multiple: true, hidden: true %>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

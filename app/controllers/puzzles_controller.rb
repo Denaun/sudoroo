@@ -1,4 +1,6 @@
 class PuzzlesController < ApplicationController
+  include Celled
+
   before_action :set_puzzle, only: %i[show edit update destroy]
 
   def index
@@ -44,11 +46,7 @@ class PuzzlesController < ApplicationController
   def puzzle_params
     p = params.require(:puzzle)
     Rails.logger.debug(p)
-    cells = p.delete :cells
-    if cells
-      p[:grid] = cells[(1...cells.length).step(2)]
-                 .map { |c| c.empty? ? ' ' : c }.join('')
-    end
+    build_grid p
     p.permit(:grid)
   end
 end
