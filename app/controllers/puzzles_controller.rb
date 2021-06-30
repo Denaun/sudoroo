@@ -1,7 +1,7 @@
 class PuzzlesController < ApplicationController
   include Celled
 
-  before_action :set_puzzle, only: %i[show edit update destroy]
+  before_action :set_puzzle, only: %i[show destroy]
 
   def index
     @puzzles = Puzzle.all
@@ -13,8 +13,6 @@ class PuzzlesController < ApplicationController
     @puzzle = Puzzle.new
   end
 
-  def edit; end
-
   def create
     @puzzle = Puzzle.new(puzzle_params)
 
@@ -23,16 +21,6 @@ class PuzzlesController < ApplicationController
         format.html { redirect_to @puzzle, notice: 'Puzzle was successfully created.' }
       else
         format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @puzzle.update(puzzle_params)
-        format.html { redirect_to @puzzle, notice: 'Puzzle was successfully updated.' }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
       end
     end
   end
