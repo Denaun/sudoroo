@@ -1,0 +1,13 @@
+<table id="<%= dom_id game %>">
+  <tbody>
+    <% Puzzle::GRID_SIDE_LENGTH.times do |r| %>
+      <tr>
+        <% Puzzle::GRID_SIDE_LENGTH.times do |c| %>
+          <% ix = c + r * Game::GRID_SIDE_LENGTH %>
+          <% is_editable = game.puzzle.grid[ix] == ' ' %>
+          <td style="<%= 'color: gray' unless is_editable %>"><%= game.grid[ix] %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
