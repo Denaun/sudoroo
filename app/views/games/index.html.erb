@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Games</h1>
+<h1>Puzzle <%= @puzzle.id %> games</h1>
 
 <table>
   <thead>
@@ -24,4 +24,7 @@
 
 <br>
 
-<%= link_to 'New Game', new_puzzle_game_path(@puzzle) %>
+<p>
+<%= link_to 'New Game', puzzle_games_path(@puzzle), method: :post %>
+<%= link_to 'Back', puzzle_path(@puzzle) %>
+</p>

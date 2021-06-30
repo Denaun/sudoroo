@@ -12,25 +12,19 @@ class GamesController < ApplicationController
   # GET /games/1 or /games/1.json
   def show; end
 
-  # GET /games/new
-  def new
-    @game = @puzzle.games.build
-    @game.grid = @puzzle.grid
-  end
-
   # GET /games/1/edit
   def edit; end
 
   # POST /games or /games.json
   def create
-    @game = @puzzle.games.build(game_params)
+    @game = @puzzle.games.build(grid: @puzzle.grid)
 
     respond_to do |format|
       if @game.save
         format.html { redirect_to [@puzzle, @game], notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to @puzzle, status: :unprocessable_entity }
         format.json { render json: @game.errors, status: :unprocessable_entity }
       end
     end

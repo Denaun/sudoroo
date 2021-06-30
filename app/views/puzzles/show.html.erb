@@ -12,9 +12,7 @@
   </tbody>
 </table>
 
-<%= link_to 'Back', puzzles_path %>
-
-<h2>Games:</h2>
+<h2><%= link_to 'Games:', puzzle_games_path(@puzzle) %></h2>
 
 <ul>
   <% @puzzle.games.each do |game| %>
@@ -22,4 +20,7 @@
   <% end %>
 </ul>
 
-<%= link_to 'New', new_puzzle_game_path(@puzzle) %>
+<p>
+<%= link_to 'New Game', puzzle_games_path(@puzzle), method: :post %>
+<%= link_to 'Back', puzzles_path %>
+</p>

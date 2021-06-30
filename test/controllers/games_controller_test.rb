@@ -11,14 +11,9 @@ class GamesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get new' do
-    get new_puzzle_game_url(@puzzle)
-    assert_response :success
-  end
-
   test 'should create game' do
     assert_difference('Game.count') do
-      post puzzle_games_url(@puzzle), params: { game: { cells: Array.new(81 * 2, ' ') } }
+      post puzzle_games_url(@puzzle), params: {}
     end
 
     assert_redirected_to puzzle_game_url(@puzzle, Game.last)
