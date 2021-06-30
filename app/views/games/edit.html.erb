@@ -1,6 +1,8 @@
 <h1>Editing Game</h1>
 
-<%= render 'form', game: @game %>
+<%= turbo_frame_tag "game" do %>
+  <%= render 'form', game: @game %>
+<% end %>
 
 <%= link_to 'Show', puzzle_game_path(@puzzle, @game) %> |
 <%= link_to 'Back', @puzzle %>
