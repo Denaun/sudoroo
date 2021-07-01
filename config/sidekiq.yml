@@ -1,0 +1,3 @@
+:schedule:
+  UpdateTimeSpentJob:
+    every: ['1s']
