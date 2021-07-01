@@ -18,7 +18,7 @@
         <tr>
           <% Puzzle::GRID_SIDE_LENGTH.times do |c| %>
             <% ix = c + r * Puzzle::GRID_SIDE_LENGTH %>
-            <td><%= form.select :cells, options, { selected: puzzle.grid[ix] }, size: 1, multiple: true %></td>
+            <td><%= form.select :cells, options, { selected: puzzle.grid ? puzzle.grid.chars[ix] : ' ' }, size: 1, multiple: true %></td>
           <% end %>
         </tr>
       <% end %>
