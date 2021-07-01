@@ -1,0 +1,2 @@
+<% time_diff = game.updated_at - game.created_at %>
+<p id=<%= dom_id game, :time %>>Time spent: <%= Time.at(time_diff.round.abs).utc.strftime "%H:%M:%S" %></p>

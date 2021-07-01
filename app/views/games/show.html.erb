@@ -2,8 +2,7 @@
 
 <%= turbo_stream_from @game %>
 
-<% time_diff = Time.now - @game.created_at %>
-<p>Time spent: <%= Time.at(time_diff.round.abs).utc.strftime "%H:%M:%S" %></p>
+<%= render partial: "time", locals: { game: @game } %>
 
 <%= turbo_frame_tag "game" do %>
   <%= render @game %>
