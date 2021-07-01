@@ -2,7 +2,7 @@
 
 one:
   puzzle: one
-  grid: MyString
+  grid: "321                                                                              "
 
 two:
   puzzle: two
