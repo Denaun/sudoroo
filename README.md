@@ -1,24 +1,30 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Terrible Sudoku implementation used as a Rails playground.
 
-Things you may want to cover:
+## Configuration
 
-* Ruby version
+```shell
+bundle
+yarn
+rails db:migrate
+```
 
-* System dependencies
+## Running
 
-* Configuration
+Start the server with
 
-* Database creation
+```shell
+rails s
+```
 
-* Database initialization
+Start the Sidekiq scheduler (used to update the time spent solving each puzzle) with
 
-* How to run the test suite
+```shell
+bundle exec sidekiq
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Run the tests with
+```shell
+rails t
+```
